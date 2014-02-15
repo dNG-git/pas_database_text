@@ -2,7 +2,7 @@
 ##j## BOF
 
 """
-dNG.pas.plugins.database.database_text
+dNG.pas.plugins.database.pas_database_text
 """
 """n// NOTE
 ----------------------------------------------------------------------------
@@ -35,6 +35,8 @@ http://www.direct-netware.de/redirect.py?licenses;gpl
 #echo(__FILEPATH__)#
 ----------------------------------------------------------------------------
 NOTE_END //n"""
+
+# pylint: disable=unused-argument
 
 from dNG.pas.module.named_loader import NamedLoader
 from dNG.pas.plugins.hooks import Hooks

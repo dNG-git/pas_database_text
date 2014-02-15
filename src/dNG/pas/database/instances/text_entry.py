@@ -54,6 +54,8 @@ class TextEntry(Abstract):
              GNU General Public License 2
 	"""
 
+	# pylint: disable=invalid-name,unused-argument
+
 	__tablename__ = "{0}_text_entry".format(Abstract.get_table_prefix())
 	"""
 SQLAlchemy table name
