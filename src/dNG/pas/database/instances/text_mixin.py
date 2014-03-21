@@ -62,7 +62,7 @@ on the object ID.
 		"""
 Relation to TextEntry (backref is set as "rel_referer")
 
-:return: (object) SQLalchemy relationship description
+:return: (object) SQLAlchemy relationship description
 :since:  v0.1.00
 		"""
 
