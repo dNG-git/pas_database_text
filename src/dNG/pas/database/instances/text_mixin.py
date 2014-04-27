@@ -66,7 +66,7 @@ Relation to TextEntry (backref is set as "rel_referer")
 :since:  v0.1.00
 		"""
 
-		return relationship(TextEntry, backref = "rel_referer", primaryjoin = (foreign(self.id_object) == remote(TextEntry.id)), uselist = False)
+		return relationship(TextEntry, backref = "rel_referer", primaryjoin = (foreign(self.id) == remote(TextEntry.id)), uselist = False)
 	#
 #
 
