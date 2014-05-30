@@ -10,7 +10,7 @@ direct PAS
 Python Application Services
 ----------------------------------------------------------------------------
 (C) direct Netware Group - All rights reserved
-http://www.direct-netware.de/redirect.py?pas;http;contentor
+http://www.direct-netware.de/redirect.py?pas;database_text
 
 The following license agreement remains valid unless any additions or
 changes are being made by direct Netware Group in a written form.
@@ -31,7 +31,7 @@ this program; if not, write to the Free Software Foundation, Inc.,
 ----------------------------------------------------------------------------
 http://www.direct-netware.de/redirect.py?licenses;gpl
 ----------------------------------------------------------------------------
-#echo(pasHttpContentorVersion)#
+#echo(pasDatabaseTextVersion)#
 #echo(__FILEPATH__)#
 ----------------------------------------------------------------------------
 NOTE_END //n"""
