@@ -60,13 +60,13 @@ on the object ID.
 	def rel_text_entry(self):
 	#
 		"""
-Relation to TextEntry (backref is set as "rel_referer")
+Relation to TextEntry
 
 :return: (object) SQLAlchemy relationship description
 :since:  v0.1.00
 		"""
 
-		return relationship(TextEntry, backref = "rel_referer", primaryjoin = (foreign(self.id) == remote(TextEntry.id)), uselist = False)
+		return relationship(TextEntry, primaryjoin = (foreign(self.id) == remote(TextEntry.id)), uselist = False)
 	#
 #
 
