@@ -36,7 +36,8 @@ http://www.direct-netware.de/redirect.py?licenses;gpl
 ----------------------------------------------------------------------------
 NOTE_END //n"""
 
-from sqlalchemy import Column, TEXT, VARCHAR
+from sqlalchemy.schema import Column
+from sqlalchemy.types import TEXT, VARCHAR
 
 from .abstract import Abstract
 
