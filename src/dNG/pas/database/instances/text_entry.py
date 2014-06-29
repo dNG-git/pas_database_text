@@ -2,10 +2,6 @@
 ##j## BOF
 
 """
-dNG.pas.database.instances.TextEntry
-"""
-"""n// NOTE
-----------------------------------------------------------------------------
 direct PAS
 Python Application Services
 ----------------------------------------------------------------------------
@@ -33,8 +29,7 @@ http://www.direct-netware.de/redirect.py?licenses;gpl
 ----------------------------------------------------------------------------
 #echo(pasDatabaseTextVersion)#
 #echo(__FILEPATH__)#
-----------------------------------------------------------------------------
-NOTE_END //n"""
+"""
 
 from sqlalchemy.schema import Column
 from sqlalchemy.types import TEXT, VARCHAR
