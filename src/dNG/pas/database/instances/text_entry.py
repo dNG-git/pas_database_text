@@ -31,7 +31,10 @@ http://www.direct-netware.de/redirect.py?licenses;gpl
 #echo(__FILEPATH__)#
 """
 
-from sqlalchemy.schema import Column
+from sqlalchemy.event import listen
+from sqlalchemy.sql.ddl import DDL
+from sqlalchemy.sql.expression import func
+from sqlalchemy.schema import Column, Index
 from sqlalchemy.types import TEXT, VARCHAR
 
 from .abstract import Abstract
@@ -56,15 +59,39 @@ class TextEntry(Abstract):
 	"""
 SQLAlchemy table name
 	"""
+	db_schema_version = 1
+	"""
+Database schema version
+	"""
 
 	id = Column(VARCHAR(32), primary_key = True)
 	"""
 text_entry.id
 	"""
-	content = Column(TEXT, index = True)
+	content = Column(TEXT)
 	"""
 text_entry.content
 	"""
+
+	@classmethod
+	def before_apply_schema(cls):
+	#
+		"""
+Called before applying the SQLAlchemy generated schema to register the
+custom DDL for PostgreSQL.
+
+:since: v0.1.00
+	"""
+
+		create_postgresql_tsvector_index = "CREATE INDEX idx_{0}_text_entry_content ON {0}_text_entry USING gin(to_tsvector('simple', content));"
+		create_postgresql_tsvector_index = create_postgresql_tsvector_index.format(cls.get_table_prefix())
+
+		listen(cls.__table__,
+		       "after_create",
+		       DDL(create_postgresql_tsvector_index).execute_if(dialect = "postgresql")
+		      )
+	#
+#
 #
 
 ##j## EOF
