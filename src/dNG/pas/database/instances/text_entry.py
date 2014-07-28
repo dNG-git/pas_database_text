@@ -32,9 +32,7 @@ http://www.direct-netware.de/redirect.py?licenses;gpl
 """
 
 from sqlalchemy.event import listen
-from sqlalchemy.sql.ddl import DDL
-from sqlalchemy.sql.expression import func
-from sqlalchemy.schema import Column, Index
+from sqlalchemy.schema import Column, DDL
 from sqlalchemy.types import TEXT, VARCHAR
 
 from .abstract import Abstract
