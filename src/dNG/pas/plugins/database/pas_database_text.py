@@ -68,7 +68,7 @@ Called for "dNG.pas.Database.applySchema.before"
 	"""
 
 	text_entry_class = NamedLoader.get_class("dNG.pas.database.instances.TextEntry")
-	if (text_entry_class != None): text_entry_class.before_apply_schema()
+	if (text_entry_class is not None): text_entry_class.before_apply_schema()
 
 	return last_return
 #
