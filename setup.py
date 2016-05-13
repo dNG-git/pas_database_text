@@ -39,7 +39,7 @@ Returns the version currently in development.
 :since:  v0.1.01
 	"""
 
-	return "v0.1.01"
+	return "v0.1.02"
 #
 
 from dNG.distutils.command.build_py import BuildPy
@@ -65,10 +65,12 @@ with TemporaryDirectory(dir = ".") as build_directory:
 	      version = get_version(),
 	      description = "Python Application Services",
 	      long_description = """"pas_database_text" is a mixin for database entries with large text.""",
-	      author = "direct Netware Group",
+	      author = "direct Netware Group et al.",
 	      author_email = "web@direct-netware.de",
 	      license = "GPLv2+",
 	      url = "https://www.direct-netware.de/redirect?pas;database_text",
+
+	      platforms = [ "any" ],
 
 	      package_dir = { "": _build_path },
 	      packages = [ "dNG" ],
