@@ -33,9 +33,9 @@ https://www.direct-netware.de/redirect?licenses;gpl
 
 # pylint: disable=unused-argument
 
-from dNG.pas.database.schema import Schema
-from dNG.pas.module.named_loader import NamedLoader
-from dNG.pas.plugins.hook import Hook
+from dNG.database.schema import Schema
+from dNG.module.named_loader import NamedLoader
+from dNG.plugins.hook import Hook
 
 def after_apply_schema(params, last_return = None):
 #
@@ -46,10 +46,10 @@ Called for "dNG.pas.Database.applySchema.after"
 :param last_return: The return value from the last hook called.
 
 :return: (mixed) Return value
-:since:  v0.1.00
+:since:  v0.2.00
 	"""
 
-	text_entry_class = NamedLoader.get_class("dNG.pas.database.instances.TextEntry")
+	text_entry_class = NamedLoader.get_class("dNG.database.instances.TextEntry")
 	Schema.apply_version(text_entry_class)
 
 	return last_return
@@ -64,10 +64,10 @@ Called for "dNG.pas.Database.applySchema.before"
 :param last_return: The return value from the last hook called.
 
 :return: (mixed) Return value
-:since:  v0.1.00
+:since:  v0.2.00
 	"""
 
-	text_entry_class = NamedLoader.get_class("dNG.pas.database.instances.TextEntry")
+	text_entry_class = NamedLoader.get_class("dNG.database.instances.TextEntry")
 	if (text_entry_class is not None): text_entry_class.before_apply_schema()
 
 	return last_return
@@ -82,10 +82,10 @@ Load and register all SQLAlchemy objects to generate database tables.
 :param last_return: The return value from the last hook called.
 
 :return: (mixed) Return value
-:since:  v0.1.00
+:since:  v0.2.00
 	"""
 
-	NamedLoader.get_class("dNG.pas.database.instances.TextEntry")
+	NamedLoader.get_class("dNG.database.instances.TextEntry")
 
 	return last_return
 #
@@ -95,7 +95,7 @@ def register_plugin():
 	"""
 Register plugin hooks.
 
-:since: v0.1.00
+:since: v0.2.00
 	"""
 
 	Hook.register("dNG.pas.Database.applySchema.after", after_apply_schema)
@@ -108,7 +108,7 @@ def unregister_plugin():
 	"""
 Unregister plugin hooks.
 
-:since: v0.1.00
+:since: v0.2.00
 	"""
 
 	Hook.unregister("dNG.pas.Database.applySchema.after", after_apply_schema)

@@ -31,65 +31,38 @@ https://www.direct-netware.de/redirect?licenses;gpl
 #echo(__FILEPATH__)#
 """
 
-from sqlalchemy.event import listen
-from sqlalchemy.schema import Column, DDL
-from sqlalchemy.types import TEXT, VARCHAR
+from sqlalchemy.ext.declarative import declared_attr
+from sqlalchemy.orm import foreign, relationship, remote
 
-from .abstract import Abstract
+from .text_entry import TextEntry
 
-class TextEntry(Abstract):
+class TextMixin(object):
 #
 	"""
-"TextEntry" contains the database representation for a text entry.
+"TextMixin" provides a relationship to an text entry in the database based
+on the object ID.
 
-:author:     direct Netware Group
+:author:     direct Netware Group et al.
 :copyright:  direct Netware Group - All rights reserved
 :package:    pas
 :subpackage: database_text
-:since:      v0.1.00
+:since:      v0.2.00
 :license:    https://www.direct-netware.de/redirect?licenses;gpl
              GNU General Public License 2
 	"""
 
-	# pylint: disable=invalid-name,unused-argument
-
-	__tablename__ = "{0}_text_entry".format(Abstract.get_table_prefix())
-	"""
-SQLAlchemy table name
-	"""
-	db_schema_version = 1
-	"""
-Database schema version
-	"""
-
-	id = Column(VARCHAR(32), primary_key = True)
-	"""
-text_entry.id
-	"""
-	content = Column(TEXT)
-	"""
-text_entry.content
-	"""
-
-	@classmethod
-	def before_apply_schema(cls):
+	@declared_attr
+	def rel_text_entry(self):
 	#
 		"""
-Called before applying the SQLAlchemy generated schema to register the
-custom DDL for PostgreSQL.
+Relation to TextEntry
 
-:since: v0.1.00
-	"""
+:return: (object) SQLAlchemy relationship description
+:since:  v0.2.00
+		"""
 
-		create_postgresql_tsvector_index = "CREATE INDEX idx_{0}_text_entry_content ON {0}_text_entry USING gin(to_tsvector('simple', content));"
-		create_postgresql_tsvector_index = create_postgresql_tsvector_index.format(cls.get_table_prefix())
-
-		listen(cls.__table__,
-		       "after_create",
-		       DDL(create_postgresql_tsvector_index).execute_if(dialect = "postgresql")
-		      )
+		return relationship(TextEntry, primaryjoin = (foreign(self.id) == remote(TextEntry.id)), uselist = False)
 	#
-#
 #
 
 ##j## EOF
