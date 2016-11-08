@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-##j## BOF
 
 """
 direct PAS
@@ -38,8 +37,7 @@ from sqlalchemy.types import TEXT, VARCHAR
 from .abstract import Abstract
 
 class TextEntry(Abstract):
-#
-	"""
+    """
 "TextEntry" contains the database representation for a text entry.
 
 :author:     direct Netware Group et al.
@@ -49,47 +47,43 @@ class TextEntry(Abstract):
 :since:      v0.2.00
 :license:    https://www.direct-netware.de/redirect?licenses;gpl
              GNU General Public License 2
-	"""
+    """
 
-	# pylint: disable=invalid-name,unused-argument
+    # pylint: disable=invalid-name,unused-argument
 
-	__tablename__ = "{0}_text_entry".format(Abstract.get_table_prefix())
-	"""
+    __tablename__ = "{0}_text_entry".format(Abstract.get_table_prefix())
+    """
 SQLAlchemy table name
-	"""
-	db_schema_version = 1
-	"""
+    """
+    db_schema_version = 1
+    """
 Database schema version
-	"""
+    """
 
-	id = Column(VARCHAR(32), primary_key = True)
-	"""
+    id = Column(VARCHAR(32), primary_key = True)
+    """
 text_entry.id
-	"""
-	content = Column(TEXT)
-	"""
+    """
+    content = Column(TEXT)
+    """
 text_entry.content
-	"""
+    """
 
-	@classmethod
-	def before_apply_schema(cls):
-	#
-		"""
+    @classmethod
+    def before_apply_schema(cls):
+        """
 Called before applying the SQLAlchemy generated schema to register the
 custom DDL for PostgreSQL.
 
 :since: v0.2.00
-	"""
+    """
 
-		create_postgresql_tsvector_index = "CREATE INDEX idx_{0}_text_entry_content ON {0}_text_entry USING gin(to_tsvector('simple', content));"
-		create_postgresql_tsvector_index = create_postgresql_tsvector_index.format(cls.get_table_prefix())
+        create_postgresql_tsvector_index = "CREATE INDEX idx_{0}_text_entry_content ON {0}_text_entry USING gin(to_tsvector('simple', content));"
+        create_postgresql_tsvector_index = create_postgresql_tsvector_index.format(cls.get_table_prefix())
 
-		listen(cls.__table__,
-		       "after_create",
-		       DDL(create_postgresql_tsvector_index).execute_if(dialect = "postgresql")
-		      )
-	#
+        listen(cls.__table__,
+               "after_create",
+               DDL(create_postgresql_tsvector_index).execute_if(dialect = "postgresql")
+              )
+    #
 #
-#
-
-##j## EOF

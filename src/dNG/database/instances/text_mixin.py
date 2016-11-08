@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-##j## BOF
 
 """
 direct PAS
@@ -37,8 +36,7 @@ from sqlalchemy.orm import foreign, relationship, remote
 from .text_entry import TextEntry
 
 class TextMixin(object):
-#
-	"""
+    """
 "TextMixin" provides a relationship to an text entry in the database based
 on the object ID.
 
@@ -49,20 +47,17 @@ on the object ID.
 :since:      v0.2.00
 :license:    https://www.direct-netware.de/redirect?licenses;gpl
              GNU General Public License 2
-	"""
+    """
 
-	@declared_attr
-	def rel_text_entry(self):
-	#
-		"""
+    @declared_attr
+    def rel_text_entry(self):
+        """
 Relation to TextEntry
 
 :return: (object) SQLAlchemy relationship description
 :since:  v0.2.00
-		"""
+        """
 
-		return relationship(TextEntry, primaryjoin = (foreign(self.id) == remote(TextEntry.id)), uselist = False)
-	#
+        return relationship(TextEntry, primaryjoin = (foreign(self.id) == remote(TextEntry.id)), uselist = False)
+    #
 #
-
-##j## EOF

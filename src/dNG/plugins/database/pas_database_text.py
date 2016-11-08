@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-##j## BOF
 
 """
 direct PAS
@@ -38,8 +37,7 @@ from dNG.module.named_loader import NamedLoader
 from dNG.plugins.hook import Hook
 
 def after_apply_schema(params, last_return = None):
-#
-	"""
+    """
 Called for "dNG.pas.Database.applySchema.after"
 
 :param params: Parameter specified
@@ -47,17 +45,16 @@ Called for "dNG.pas.Database.applySchema.after"
 
 :return: (mixed) Return value
 :since:  v0.2.00
-	"""
+    """
 
-	text_entry_class = NamedLoader.get_class("dNG.database.instances.TextEntry")
-	Schema.apply_version(text_entry_class)
+    text_entry_class = NamedLoader.get_class("dNG.database.instances.TextEntry")
+    Schema.apply_version(text_entry_class)
 
-	return last_return
+    return last_return
 #
 
 def before_apply_schema(params, last_return = None):
-#
-	"""
+    """
 Called for "dNG.pas.Database.applySchema.before"
 
 :param params: Parameter specified
@@ -65,17 +62,16 @@ Called for "dNG.pas.Database.applySchema.before"
 
 :return: (mixed) Return value
 :since:  v0.2.00
-	"""
+    """
 
-	text_entry_class = NamedLoader.get_class("dNG.database.instances.TextEntry")
-	if (text_entry_class is not None): text_entry_class.before_apply_schema()
+    text_entry_class = NamedLoader.get_class("dNG.database.instances.TextEntry")
+    if (text_entry_class is not None): text_entry_class.before_apply_schema()
 
-	return last_return
+    return last_return
 #
 
 def load_all(params, last_return = None):
-#
-	"""
+    """
 Load and register all SQLAlchemy objects to generate database tables.
 
 :param params: Parameter specified
@@ -83,37 +79,33 @@ Load and register all SQLAlchemy objects to generate database tables.
 
 :return: (mixed) Return value
 :since:  v0.2.00
-	"""
+    """
 
-	NamedLoader.get_class("dNG.database.instances.TextEntry")
+    NamedLoader.get_class("dNG.database.instances.TextEntry")
 
-	return last_return
+    return last_return
 #
 
 def register_plugin():
-#
-	"""
+    """
 Register plugin hooks.
 
 :since: v0.2.00
-	"""
+    """
 
-	Hook.register("dNG.pas.Database.applySchema.after", after_apply_schema)
-	Hook.register("dNG.pas.Database.applySchema.before", before_apply_schema)
-	Hook.register("dNG.pas.Database.loadAll", load_all)
+    Hook.register("dNG.pas.Database.applySchema.after", after_apply_schema)
+    Hook.register("dNG.pas.Database.applySchema.before", before_apply_schema)
+    Hook.register("dNG.pas.Database.loadAll", load_all)
 #
 
 def unregister_plugin():
-#
-	"""
+    """
 Unregister plugin hooks.
 
 :since: v0.2.00
-	"""
+    """
 
-	Hook.unregister("dNG.pas.Database.applySchema.after", after_apply_schema)
-	Hook.unregister("dNG.pas.Database.applySchema.before", before_apply_schema)
-	Hook.unregister("dNG.pas.Database.loadAll", load_all)
+    Hook.unregister("dNG.pas.Database.applySchema.after", after_apply_schema)
+    Hook.unregister("dNG.pas.Database.applySchema.before", before_apply_schema)
+    Hook.unregister("dNG.pas.Database.loadAll", load_all)
 #
-
-##j## EOF
